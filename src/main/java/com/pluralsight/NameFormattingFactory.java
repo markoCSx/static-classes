@@ -7,6 +7,14 @@ public class NameFormattingFactory {
     private String lastName;
     private String suffix;
 
+    private NameFormattingFactory (String prefix, String firstName, String middleName, String lastName, String suffix) {
+        this.prefix = prefix;
+        this.firstName = firstName;
+        this.middleName = middleName;
+        this.lastName = lastName;
+        this.suffix = suffix;
+    }
+
 
     public static String formatter (String prefix, String firstName, String middleName, String lastName, String suffix) {
         int counter = 0;
