@@ -83,11 +83,16 @@ public class NameFormattingFactory {
                 fullNameArray.add(null);
             }
         }
-        prefix = fullNameArray.get(0);
-        firstName = fullNameArray.get(1);
-        middleName = fullNameArray.get(2);
-        lastName = fullNameArray.get(3).substring(0, fullNameArray.get(3).length() - 1);
-        suffix = fullNameArray.get(4);
+        for (int i = 0; i < fullNameArray.size(); i++) {
+            switch (i) {
+                case 0 -> prefix = fullNameArray.get(i);
+                case 1 -> firstName = fullNameArray.get(i);
+                case 2 -> middleName = fullNameArray.get(i);
+                case 3 -> lastName = fullNameArray.get(i).substring(0, fullNameArray.get(i).length() - 1);
+                case 4 -> suffix = fullNameArray.get(i);
+            }
+        }
+
         return format(prefix, firstName, middleName, lastName, suffix);
     }
 
