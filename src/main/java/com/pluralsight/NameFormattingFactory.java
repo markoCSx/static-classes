@@ -1,5 +1,8 @@
 package com.pluralsight;
 
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 public class NameFormattingFactory {
     private String prefix;
     private String firstName;
@@ -15,8 +18,7 @@ public class NameFormattingFactory {
         this.suffix = suffix;
     }
 
-
-    public static String formatter (String prefix, String firstName, String middleName, String lastName, String suffix) {
+    public static String format (String prefix, String firstName, String middleName, String lastName, String suffix) {
         int counter = 0;
         String formattedName = "";
         do {
@@ -61,7 +63,32 @@ public class NameFormattingFactory {
     }
 
     public static String format (String firstName, String lastName) {
-        return formatter(null, firstName, null, lastName, null);
+        return format(null, firstName, null, lastName, null);
+    }
+
+    public static String format (String fullName) {
+        String prefix = null;
+        String firstName = null;
+        String middleName = null;
+        String lastName = null;
+        String suffix = null;
+        String[] fullNameSplit = fullName.split(Pattern.quote(" "));
+        ArrayList<String> fullNameArray = new ArrayList<>();
+        for (int i = 0; i < fullNameSplit.length; i++) {
+            if (i == 0 && (fullNameSplit.length == 4 || fullNameSplit.length == 3)) {
+                fullNameArray.add(null);
+            }
+            fullNameArray.add(fullNameSplit[i]);
+            if (i == 2 && fullNameSplit.length == 3) {
+                fullNameArray.add(null);
+            }
+        }
+        prefix = fullNameArray.get(0);
+        firstName = fullNameArray.get(1);
+        middleName = fullNameArray.get(2);
+        lastName = fullNameArray.get(3).substring(0, fullNameArray.get(3).length() - 1);
+        suffix = fullNameArray.get(4);
+        return format(prefix, firstName, middleName, lastName, suffix);
     }
 
 }
