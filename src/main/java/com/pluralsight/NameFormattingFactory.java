@@ -27,6 +27,9 @@ public class NameFormattingFactory {
                     if (lastName == null) {
                         break;
                     }
+                    if (lastName.isEmpty()) {
+                        throw new IllegalArgumentException("Last name not found.");
+                    }
                     formattedName += lastName + ", ";
                 }
                 case 1 -> {
@@ -38,6 +41,9 @@ public class NameFormattingFactory {
                 case 2 -> {
                     if (firstName == null) {
                         break;
+                    }
+                    if (firstName.isEmpty()) {
+                        throw new IllegalArgumentException("First name not found.");
                     }
                     formattedName += firstName + " ";
                 }
